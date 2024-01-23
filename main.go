@@ -5,12 +5,12 @@ import (
 	"log"
 	"sync"
 
+	"github.com/boddumanohar/backends/auth"
+	sconfig "github.com/boddumanohar/backends/config"
+	"github.com/boddumanohar/backends/mailbox"
+	"github.com/boddumanohar/backends/resolver"
 	"github.com/mailhog/MailHog-IMAP/config"
 	"github.com/mailhog/MailHog-IMAP/imap"
-	"github.com/mailhog/backends/auth"
-	sconfig "github.com/mailhog/backends/config"
-	"github.com/mailhog/backends/mailbox"
-	"github.com/mailhog/backends/resolver"
 )
 
 var conf *config.Config

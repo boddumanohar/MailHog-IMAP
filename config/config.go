@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mailhog/backends/config"
+	"github.com/boddumanohar/backends/config"
 )
 
 // TODO: make TLSConfig and PolicySet 'ref'able

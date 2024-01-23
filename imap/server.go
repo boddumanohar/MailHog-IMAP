@@ -7,10 +7,10 @@ import (
 	"net"
 	"path/filepath"
 
+	"github.com/boddumanohar/backends/auth"
+	"github.com/boddumanohar/backends/mailbox"
+	"github.com/boddumanohar/backends/resolver"
 	"github.com/mailhog/MailHog-IMAP/config"
-	"github.com/mailhog/backends/auth"
-	"github.com/mailhog/backends/mailbox"
-	"github.com/mailhog/backends/resolver"
 )
 
 // Server represents an SMTP server instance
