@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -18,27 +17,30 @@ import (
 func DefaultConfig() *Config {
 	return &Config{
 		Backends: map[string]config.BackendConfig{
-			"local_auth": config.BackendConfig{
+			"local_auth": {
 				Type: "local",
 				Data: map[string]interface{}{
 					"config": "auth.json",
 				},
 			},
-			"local_mailbox": config.BackendConfig{
+			"local_mailbox": {
 				Type: "local",
 				Data: map[string]interface{}{},
 			},
 		},
 		Servers: []*Server{
-			&Server{
-				BindAddr:  "0.0.0.0:143",
-				Hostname:  "mailhog.example",
+			{
+				BindAddr:  "0.0.0.0:7890",
+				Hostname:  "localhost",
 				PolicySet: DefaultPolicySet(),
 				Backends: Backends{
 					Auth: &config.BackendConfig{
 						Ref: "local_auth",
 					},
 					Mailbox: &config.BackendConfig{
+						Ref: "local_mailbox",
+					},
+					Resolver: &config.BackendConfig{
 						Ref: "local_mailbox",
 					},
 				},
@@ -111,7 +113,7 @@ var configFile string
 // Configure returns the configuration
 func Configure() *Config {
 	if len(configFile) > 0 {
-		b, err := ioutil.ReadFile(configFile)
+		b, err := os.ReadFile(configFile)
 		if err != nil {
 			fmt.Printf("Error reading %s: %s", configFile, err)
 			os.Exit(1)

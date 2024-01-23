@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"sync"
 
@@ -43,18 +44,21 @@ func newServer(cfg *config.Config, server *config.Server) error {
 	var a, m, r sconfig.BackendConfig
 	var err error
 
+	fmt.Println("configurating new server.Backends.Auth", cfg.Backends)
 	if server.Backends.Auth != nil {
 		a, err = server.Backends.Auth.Resolve(cfg.Backends)
 		if err != nil {
 			return err
 		}
 	}
+	fmt.Println("configurating new server.Backends.Mailbox", cfg.Backends)
 	if server.Backends.Mailbox != nil {
 		m, err = server.Backends.Mailbox.Resolve(cfg.Backends)
 		if err != nil {
 			return err
 		}
 	}
+	fmt.Println("configurating new server.Backends.Resolver", cfg.Backends)
 	if server.Backends.Resolver != nil {
 		r, err = server.Backends.Resolver.Resolve(cfg.Backends)
 		if err != nil {

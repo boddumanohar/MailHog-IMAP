@@ -18,3 +18,15 @@ If you make any changes, run ```go fmt ./...``` before submitting a pull request
 Copyright ©‎ 2015, Ian Kent (http://iankent.uk)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.
+
+### testing
+
+start server
+```
+./MailHog-IMAP
+```
+
+testing
+```
+python3 test.py localhost test test
+```
